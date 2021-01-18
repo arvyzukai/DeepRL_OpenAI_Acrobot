@@ -16,9 +16,10 @@ class QNetwork(nn.Module):
         super(QNetwork, self).__init__()
         self.seed = torch.manual_seed(seed)
 
-        self.fc1 = nn.Linear(state_size, 32)
-        #self.fc2 = nn.Linear(128, 64)
-        self.fc3 = nn.Linear(32, action_size)
+        self.fc1 = nn.Linear(state_size, 16)
+        #self.fc2 = nn.Linear(64, 32)
+        #self.fc3 = nn.Linear(32,16)
+        self.fc4 = nn.Linear(16, action_size)
 
 
     def forward(self, state):
@@ -27,5 +28,7 @@ class QNetwork(nn.Module):
         x = F.relu(x)
         #x = self.fc2(x)
         #x = F.relu(x)
-        x = self.fc3(x)
+        #x = self.fc3(x)
+        #x = F.relu(x)
+        x = self.fc4(x)
         return x
